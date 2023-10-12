@@ -1,0 +1,55 @@
+{% extends 'jobs/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+{% load static %}
+
+<section class="jumbotron text-center bg-white mb-0">
+  <div class=container">
+        {% if note %}
+            <div class="alert alert-success">
+                {{ note }}
+            </div>
+        {% endif %}
+  </div>
+  <div class="container">
+    <h1>Python Developer, Management Accountant & Data Scientist</h1>
+    <p class="lead text-muted">Hi, my name is James and I enjoy coding. See below some of my work.</p>
+    <img src="{% static 'Jamesnanji Rev-01.png' %}" class="img-responsive" height="300" width="300" alt="Cartoon picture of James Nanji">
+  </div>
+</section>
+
+<div class="py-0">
+  <div class="container bg-light rounded pt-4 pb-2">
+    <h2 style="text-align:center; padding-bottom:0px;">Portfolio</h2>
+    <div class="row m-4">
+      {% for job in jobs.all %}
+        <div class="col-md-4">
+          <a href="{% url 'detail' job.id %}">
+            <div class="card mb-4 shadow-sm">
+              <img class="card-img-top" src="{{ job.image.url }}">
+              <div class="card-body">
+                <p class="card-text">{{ job.project_name }}</p>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+<section class="jumbotron text-center pb-0">
+  <div class="container">
+    <h2 style="text-align:center">Contact me</h2>
+    <p class="lead text-muted">
+      Feel free to reach out via <a href="https://www.linkedin.com/in/james-nanji-00558925/" target="_blank">Linkedin</a> or using the form below.
+    </p>
+  </div>
+</section>
+<div class="container">
+  {% crispy form %}
+</div>
+
+
+
+{% endblock content %}

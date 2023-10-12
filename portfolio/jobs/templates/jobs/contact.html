@@ -1,0 +1,21 @@
+{% extends 'jobs/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<h1>Contact me</h1>
+<section class="jumbotron text-left pt-5">
+    <div class=container">
+        {% if note %}
+            <div class="alert alert-success">
+                {{ note }}
+            </div>
+        {% endif %}
+    </div>
+    <div class="container">
+        <form method="post" action="{% url 'contact' %}">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit">
+        </form>
+    </div>
+</section>
+{% endblock %}
